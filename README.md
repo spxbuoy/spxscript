@@ -1,15 +1,3 @@
-<img src="https://readme-typing-svg.herokuapp.com?color=%2336BCF7&center=true&vCenter=true&lines=+W+E+L+C+O+M+E" />
-</p>
-</p>
-<img src="https://readme-typing-svg.herokuapp.com?color=%234d8c33ff&center=true&vCenter=true&lines=TO-SAVAGE-𝐓𝐄𝐂𝐇" />
-</p>
-<p align="center"> 
- 𝚅𝙸𝚂𝙸𝚃𝙾𝚁𝚂 𝙲𝙾𝚄𝙽𝚃
- <img src="https://profile-counter.glitch.me/savagetech56/count.svg" alt="Visitors">
-</p>
-
-
-
 ## UPGRADE FOR DEBIAN
 ```
 apt update -y && apt upgrade -y && apt dist-upgrade -y && reboot
@@ -75,10 +63,6 @@ wget -q https://raw.githubusercontent.com/spxbuoy/spxscript/main/update.sh && ch
 - Always Use HTTPS : OFF
 - UNDER ATTACK MODE : OFF
 ```
-
-## MENU FOR SCRIPT
-<img width="100%" alt="IMG-20250215-WA0003(1).jpg" src="https://github.com/spxbuoy/spxscript/blob/main/assets/IMG-20250215-WA0003(1).jpg">
-
 ### CONTACT ADMIN !
-savagetech56:
+SPILUX:
 <br><br><a href="https://wa.me/+254112011036" target=”_blank”><img src="https://img.shields.io/static/v1?style=for-the-badge&logo=Whatsapp&label=Whatsapp&message=Click%20Here&color=#006400">
