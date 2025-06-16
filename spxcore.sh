@@ -104,7 +104,7 @@ function print_ok() {
 }
 function print_install() {
 	echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
-    echo -e "${YELLOW} » $1 ${FONT}"
+    echo -e "${YELLOW} » Spilux $1 ${FONT}"
 	echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
     sleep 1
 }
@@ -116,7 +116,7 @@ function print_error() {
 function print_success() {
     if [[ 0 -eq $? ]]; then
 		echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
-        echo -e "${Green} » $1 successfully installed"
+        echo -e "${Green} » Spilux $1 successfully installed"
 		echo -e "${green} ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ ${FONT}"
         sleep 2
     fi
