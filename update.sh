@@ -54,6 +54,6 @@ echo -e ""
 echo -e "\033[1;91mUpdate Script Service\033[1;37m"
 fun_bar 'res1'
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
-echo -e ""
-read -n 1 -s -r -p "Press [ Enter ] To Back On Menu"
+echo ""
+read -p "Press [ Enter ] To Back On Menu"
 menu
