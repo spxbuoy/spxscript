@@ -10,27 +10,56 @@
 clear
 #!/bin/bash
 
-# ⌛️ Cool animated loading bar (10 seconds total)
-super_animation() {
-    clear
-    tput civis
-    echo -e "\n\033[1;96m┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-    echo -e "┃         \033[1;97mSPXLAU SCRIPT UPDATER RUNNING\033[1;96m        ┃"
-    echo -e "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
-
-    echo -ne "\033[1;93m[ Installing... ]\033[0m\n\n"
-
-    bar="▁▂▃▄▅▆▇█"
-    for i in $(seq 1 40); do
-        sleep 0.25  # 40 × 0.25s = 10s
-        chars=${bar:$(($RANDOM % 8)):1}
-        printf "\033[1;92m%s" "$chars"
+# ✅ Typewriter animation
+type_writer() {
+    text="$1"
+    delay="${2:-0.03}"
+    for ((i=0; i<${#text}; i++)); do
+        echo -n "${text:$i:1}"
+        sleep "$delay"
     done
-    echo -e "\n\n\033[1;92m✔ Installation Complete! SPXLAU Script Updated!\033[0m\n"
+    echo ""
+}
+
+# 🔁 Spinner animation
+spinner_loading() {
+    CMD[0]="$1"
+    CMD[1]="$2"
+    (
+        [[ -e $HOME/fim ]] && rm $HOME/fim
+        ${CMD[0]} -y >/dev/null 2>&1
+        ${CMD[1]} -y >/dev/null 2>&1
+        touch $HOME/fim
+    ) >/dev/null 2>&1 &
+
+    tput civis
+    echo -ne "\033[0;33mPlease Wait Loading \033[1;37m- \033[0;33m"
+
+    spinner="/|\\-"
+    while true; do
+        for ((i = 0; i < 4; i++)); do
+            printf "\b${spinner:i:1}"
+            sleep 0.1
+        done
+        [[ -e $HOME/fim ]] && rm $HOME/fim && break
+    done
+
+    echo -e "\b\033[1;32m✔\033[1;37m"
     tput cnorm
 }
 
-# 📦 Script install/update
+# 📶 Fake progress bar
+progress_bar() {
+    echo -ne "\033[0;36mLoading: ["
+    for i in $(seq 1 30); do
+        echo -ne "#"
+        sleep 0.03
+    done
+    echo -e "]\033[0m \033[1;32m100%\033[0m"
+    sleep 0.3
+}
+
+# 🚀 Update function
 res1() {
     wget -q https://raw.githubusercontent.com/spxbuoy/spxscript/main/menu/menu.zip
     unzip -qq menu.zip
@@ -39,7 +68,7 @@ res1() {
     rm -rf menu menu.zip update.sh
 }
 
-# 🧠 MAIN FLOW
+# 🧠 MAIN UI
 netfilter-persistent
 clear
 echo ""
@@ -48,13 +77,17 @@ echo -e "\e[1;97;101m            » UPDATE SCRIPT SPXLAU «             \033[0m"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo ""
 
-# Run the animation + install
-super_animation &
-res1
-wait
+type_writer $'\033[1;91mFetching the latest SPXLAU updates...\033[1;37m' 0.04
+spinner_loading 'res1'
+
+echo ""
+progress_bar
+
+# 🔔 Optional beep (uncomment below if you want sound)
+# echo -ne "\a"
 
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 read -p "✅ Press [ Enter ] To Return to Menu"
 
-# 🔄 Load menu if exists
+# 📂 Open menu
 command -v menu >/dev/null 2>&1 && menu || /usr/local/sbin/menu
