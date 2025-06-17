@@ -10,36 +10,27 @@
 clear
 #!/bin/bash
 
-# 🎭 Glitch effect
-glitch_effect() {
-    tput civis
-    for i in {1..8}; do
-        rand=$(head /dev/urandom | tr -dc 'A-Za-z0-9!@#$%^&*()_+=-' | head -c $((RANDOM % 30 + 20)))
-        echo -ne "\033[1;35m$rand\r"
-        sleep 0.05
-    done
-    tput cnorm
-}
-
-# 🌀 Smooth dot loader animation (10 sec)
-smooth_loader() {
+# ⌛️ Cool animated loading bar (10 seconds total)
+super_animation() {
     clear
     tput civis
     echo -e "\n\033[1;96m┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓"
-    echo -e "┃       \033[1;97mSPXLAU SCRIPT INSTALLER RUNNING\033[1;96m       ┃"
+    echo -e "┃         \033[1;97mSPXLAU SCRIPT UPDATER RUNNING\033[1;96m        ┃"
     echo -e "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n"
-    echo -ne "\033[1;93m[ INSTALLING ]\033[0m "
 
-    for i in {1..30}; do
-        echo -ne "."
-        sleep 0.33
-        (( $i % 5 == 0 )) && glitch_effect
+    echo -ne "\033[1;93m[ Installing... ]\033[0m\n\n"
+
+    bar="▁▂▃▄▅▆▇█"
+    for i in $(seq 1 40); do
+        sleep 0.25  # 40 × 0.25s = 10s
+        chars=${bar:$(($RANDOM % 8)):1}
+        printf "\033[1;92m%s" "$chars"
     done
+    echo -e "\n\n\033[1;92m✔ Installation Complete! SPXLAU Script Updated!\033[0m\n"
     tput cnorm
-    echo ""
 }
 
-# 📦 Your update script
+# 📦 Script install/update
 res1() {
     wget -q https://raw.githubusercontent.com/spxbuoy/spxscript/main/menu/menu.zip
     unzip -qq menu.zip
@@ -48,21 +39,7 @@ res1() {
     rm -rf menu menu.zip update.sh
 }
 
-# 🖼 ASCII Art Display
-ascii_success() {
-    echo -e "\n\033[1;92m"
-    echo "   _____ _____ _      _                _   _              _           _ "
-    echo "  / ____|_   _| |    | |              | | (_)            | |         | |"
-    echo " | (___   | | | |__  | |_ ___  ___ ___| |_ _  ___  _ __  | |__   ___ | |"
-    echo "  \___ \  | | | '_ \ | __/ _ \/ __/ __| __| |/ _ \| '_ \ | '_ \ / _ \| |"
-    echo "  ____) |_| |_| | | || ||  __/\__ \__ \ |_| | (_) | | | || |_) | (_) | |"
-    echo " |_____/|_____|_| |_| \__\___||___/___/\__|_|\___/|_| |_||_.__/ \___/|_|"
-    echo ""
-    echo "                  ✅  SPILUX AUTO SCRIPT UPDATED SUCCESSFULLY"
-    echo -e "\033[0m"
-}
-
-# 🧠 Main Flow
+# 🧠 MAIN FLOW
 netfilter-persistent
 clear
 echo ""
@@ -71,12 +48,13 @@ echo -e "\e[1;97;101m            » UPDATE SCRIPT SPXLAU «             \033[0m"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 echo ""
 
-smooth_loader &
+# Run the animation + install
+super_animation &
 res1
 wait
-ascii_success
 
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━" | lolcat
 read -p "✅ Press [ Enter ] To Return to Menu"
 
+# 🔄 Load menu if exists
 command -v menu >/dev/null 2>&1 && menu || /usr/local/sbin/menu
