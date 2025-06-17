@@ -1,7 +1,7 @@
 #!/bin/bash
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # System Request : Debian 9+/Ubuntu 18.04+/20+
-# Develovers » ṡƿ×ʟѧȗ
+# Develovers » ṡƿ×ʟѧȗ   
 # Email      » spxlau2@gmail.com
 # telegram   » https://t.me/SpiluxX
 # whatsapp   » wa.me/+254112011036
